@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Favorite Classmates</title>
+    <!-- jquery link -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="studentSelector">
+        <h1 id="studentName">Choose your favorite classmate!</h1>
+        <br />
+        <button onclick="pickStudent()">Pick classmate!</button>
+    </div>
+    <div id="studentList">
+    </div>
+</body>
+<style>
+	.studentListItm {
+		border: 2px solid black;
+		margin: 5px;
+	}
+</style>
+<script type="text/javascript">
+const list = ["Andrasta Seatts",
+    "Beau Simpson",
+    "Brett Davis",
+    "Byron Roberts",
+    "CC Stinson",
+    "Chase Jenkins",
+    "Daniel Reynolds",
+    "Elizabeth Sabogal",
+    "Felice Ross",
+    "Iman Malik",
+    "Jenean Qaddura",
+    "Jessica Oliver",
+    "Katherine Higgins",
+    "Michael Preston",
+    "Monroe Howard II",
+    "Morgan Kennedy",
+    "Peter Kimani",
+    "Scott Wagner"
+];
+getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+pickStudent = () => {
+	const picked = list[getRandomInt(0, list.length - 1)];
+	$("#studentName").text(picked);
+}
+removeStud = (id) => {
+	list.splice(id, 1);
+	buildList();
+}
+buildList = () => {
+	$("#studentList").empty();
+    list.forEach((elem, id) => {
+        let newNameElem = $("<span class='studentListItm'>" + elem + " <button onclick='removeStud(" + id + ")'>x</button></span>");
+        $("#studentList").append(newNameElem)
+    })
+}
+window.onload = () => {
+	buildList();
+
+}
+</script>
+
+</html>
